@@ -2,12 +2,13 @@ package coverbadge
 
 import (
 	"fmt"
-	"github.com/jpoles1/gopherbadger/logging"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"regexp"
+
+	"github.com/johnnylufa/gopherbadger/logging"
 )
 
 type Badge struct {
@@ -54,7 +55,7 @@ func (badge Badge) DownloadBadge(filepath string, coverageFloat float64) {
 func (badge Badge) WriteBadgeToMd(filepath string, coverageFloat float64, isSilent bool) {
 	badge.ImageExtension = ".svg"
 	badgeURL := badge.generateBadgeBadgeURL(coverageFloat)
-	newImageTag := fmt.Sprintf("<a href='https://github.com/jpoles1/gopherbadger' target='_blank'>![gopherbadger-tag-do-not-edit](%s)</a>", badgeURL)
+	newImageTag := fmt.Sprintf("<a href='https://github.com/johnnylufa/gopherbadger' target='_blank'>![gopherbadger-tag-do-not-edit](%s)</a>", badgeURL)
 	imageTagRegex := `(<a href=.*>)?\!\[gopherbadger-tag-do-not-edit\]\(.*\)(<\/a>)?`
 	r, err := regexp.Compile(imageTagRegex)
 	if err != nil {
